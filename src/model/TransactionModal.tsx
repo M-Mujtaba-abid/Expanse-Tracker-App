@@ -39,7 +39,7 @@ const TransactionModal = ({ type, onClose }: Props) => {
     >
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 p-6 rounded-lg w-96 z-50"
+        className="bg-white dark:bg-gray-800 p-6 rounded-lg md:w-96 z-50"
       >
         <h2 className="text-xl font-bold mb-4">
           Add {type === "credit" ? "Credit" : "Debit"}

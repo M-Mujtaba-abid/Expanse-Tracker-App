@@ -53,37 +53,71 @@ const Credits = () => {
       </div>
 
       {/* Transactions Table */}
-      <div className="bg-gray-200 dark:bg-gray-800 rounded-xl shadow overflow-x-auto">
-        <table className="min-w-full text-left">
-          <thead className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm uppercase">
-            <tr>
-              <th className="px-4 py-3">Date</th>
-              <th className="px-4 py-3">Description</th>
-              <th className="px-4 py-3">Amount</th>
-              <th className="px-4 py-3">Category</th>
-              <th className="px-4 py-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {credits.map((t: Transaction) => (
-              <tr key={t.id} className="border-t border-gray-200 dark:border-gray-700">
-                <td className="px-4 py-3">{t.date}</td>
-                <td className="px-4 py-3">{t.description}</td>
-                <td className="px-4 py-3 text-green-500 font-medium">+ Rs {t.amount}</td>
-                <td className="px-4 py-3">{t.category}</td>
-                <td className="px-4 py-3 space-x-2">
-                  <button
-                    onClick={() => dispatch(deleteTransaction(t.id))}
-                    className="text-red-500 hover:underline"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+     {/* Desktop Table */}
+<div className="hidden md:block bg-gray-200 dark:bg-gray-800 rounded-xl shadow overflow-x-auto">
+  <table className="min-w-full text-left">
+    <thead className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm uppercase">
+      <tr>
+        <th className="px-4 py-3">Date</th>
+        <th className="px-4 py-3">Description</th>
+        <th className="px-4 py-3">Amount</th>
+        <th className="px-4 py-3">Category</th>
+        <th className="px-4 py-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {credits.map((t: Transaction) => (
+        <tr key={t.id} className="border-t border-gray-200 dark:border-gray-700">
+          <td className="px-4 py-3">{t.date}</td>
+          <td className="px-4 py-3">{t.description}</td>
+          <td className="px-4 py-3 text-green-500 font-medium">
+            + Rs {t.amount}
+          </td>
+          <td className="px-4 py-3">{t.category}</td>
+          <td className="px-4 py-3">
+            <button
+              onClick={() => dispatch(deleteTransaction(t.id))}
+              className="text-red-500 hover:underline"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* Mobile Card Layout */}
+<div className="md:hidden space-y-4">
+  {credits.map((t: Transaction) => (
+    <div
+      key={t.id}
+      className="bg-gray-200 dark:bg-gray-800 p-4 rounded-xl shadow space-y-2"
+    >
+      <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+        <span>{t.date}</span>
+        <span className="text-green-500 font-semibold">
+          + Rs {t.amount}
+        </span>
       </div>
+
+      <div className="font-medium">{t.description}</div>
+
+      <div className="text-sm text-gray-600 dark:text-gray-400">
+        Category: {t.category}
+      </div>
+
+      <button
+        onClick={() => dispatch(deleteTransaction(t.id))}
+        className="text-red-500 text-sm hover:underline"
+      >
+        Delete
+      </button>
+    </div>
+  ))}
+</div>
+
 
     </div>
   );
