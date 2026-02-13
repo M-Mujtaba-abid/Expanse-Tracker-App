@@ -10,7 +10,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="transactions/debit" element={<Debits />} />
         <Route path="transactions/credit" element={<Credits />} />
       </Route>
